@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css"/>
+		<style>
+			body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, header, hgroup, nav, section, article, aside, footer, figure, figcaption, menu, button {
+			    margin: 0;
+			    padding: 0;
+			}
+			body {
+				line-height: 1.5;
+				background-color: #fff;
+			}
+			a {
+				text-decoration: none;
+			}
+			#wrap {
+				/*width: 960px;
+				margin: 0 auto;*/
+				overflow: hidden;
+			}
+			.navbar {
+				margin-bottom: 0;
+				border: 0 none;
+				background-color: #f5f5f5;
+			}
+			.logo {
+				width: 240px;
+				height: 50px;
+				line-height: 50px;
+				color: #fff;
+				text-align: center;
+				font-size: 20px;
+				background-color: #3a3f51;
+				cursor: pointer;
+			}
+			#tree {
+				width: 240px;
+				float: left;
+			}
+			li {
+				list-style: none;
+			}
+			.content-wrap {
+				margin-left: 250px;
+				margin-top: 10px;
+			}
+			.versions {
+				width: 100%;
+				overflow: hidden;
+			}
+			.versions li {
+				width: 240px;
+				float: left;
+				padding: 10px 10px 0;
+				margin-left: 10px;
+				margin-top: 10px;
+				background-color: #F5F5F5;
+				border: 1px solid #ccc;
+			    box-shadow: 0 0 6px #ccc;
+			    border-radius: 5px;
+			    overflow: hidden;
+			}
+			.versions li img {
+				width: 100%;
+			}
+			.versions .vimg {
+				width: 220px;
+				height: 391px;
+				background-repeat: no-repeat;
+				/*background-size: 220px 391px;*/
+				background-size: contain;
+				background-position: top center;
+			}
+			.versions li p {
+				text-align: center;
+				padding: 10px;
+			}
+			#tree {
+				padding-bottom: 40px;
+				background-color: #3a3f51;
+				border-bottom-left-radius: 3px;
+				border-bottom-right-radius: 3px;
+			}
+			.gray {
+				-webkit-filter: grayscale(100%);
+				-moz-filter: grayscale(100%);
+				-ms-filter: grayscale(100%);
+				-o-filter: grayscale(100%);
+				filter: grayscale(100%);
+				filter: gray;
+			}
+			
+			.dialog {
+				display: block;
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, 0.5);
+				z-index: 9999;
+				padding: 10px;
+				overflow-x: hidden;
+    			overflow-y: auto;
+			}
+			.dialog-content {
+				margin: 0 auto;
+			}
+			.dialog-content img {
+				display: block;
+				margin: 0 auto;
+				max-width: 80%;
+				
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header class="navbar">
+			<div class="logo">项目记录</div>
+		</header>
+		<div id="wrap">
+			<div id="tree">
+			</div>
+			<div class="content-wrap">
+				<div class="clock-wrapper">
+				    <div class="clock-base">
+				        <div class="click-indicator">
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				            <div></div>
+				        </div>
+				        <div class="clock-hour"></div>
+				        <div class="clock-minute"></div>
+				        <div class="clock-second"></div>
+				        <div class="clock-center"></div>
+				    </div>
+				</div>
+				<ul class="versions">
+					<!--<li>
+						<div class="vimg" style="background-image: url(../h5game/mk-my-editor/imgs/index2017-02-24-17.png);"></div>
+						<p>上线时间：00000</p>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		
+		
+		<script src="lib/jquery-2.1.1.min.js"></script>
+		<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="lib/bootstrap/js/bootstrap-treeview.js"></script>
+		<script>
+			var nodeId = GetQueryString('nodeId');
+			console.log(nodeId)
+			
+			function getSelectedState(id) {
+				var nodexIdNum = parseInt(nodeId);
+				if(nodexIdNum === id) {
+					//console.log(true)
+					return true;
+				} else {
+					//console.log(false)
+					return false;
+				}
+			}
+			console.log(getSelectedState(0))
+			console.log(getSelectedState(1))
+			console.log(getSelectedState(2))
+			console.log(getSelectedState(3))
+			function getTree() {
+				var data = [{
+						text: "项目1(魔玩社)",
+						nodes: [{
+								text: "前台页面",
+								id: 0,
+								state: {
+									selected: getSelectedState(0)
+								}
+							}
+						]
+					},
+					{
+						text: "项目2(海外订阅项目)",
+						nodes: [{
+								text: "前台页面",
+								id: 1,
+								state: {
+									selected: getSelectedState(1)
+								}
+							},
+							{
+								text: "内容发布后台",
+								id: 2,
+								state: {
+									selected: getSelectedState(2)
+								}
+							},
+							{
+								text: "数据统计后台",
+								id: 3,
+								state: {
+									selected: getSelectedState(3)
+								}
+							}
+						]
+					}
+				];
+				return data;
+			}
+			//var nodeId = GetQueryString('nodeId');
+			//获取链接参数
+				function GetQueryString(name){
+					var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+					var r = window.location.search.substr(1).match(reg);
+					if(r!=null)return  unescape(r[2]); return null;
+				}
+			$(function() {
+				$('#tree').treeview({
+					data: getTree(),
+					levels: 2,
+					showBorder : false,
+					backColor : "#3a3f51",
+					color : "#b4b6bd",
+					onhoverColor : "#2e3344",
+					selectedBackColor : "#428bca",
+					selectedColor : "#fff",
+					onNodeSelected: function(event,data) {
+//						clearContent();
+//						getData(data.id);
+						location.href = 'game.html?nodeId=' + data.id;
+					}
+				});
+				
+				
+				
+				$("#tree ul li").each(function(i,item) {
+					var $item=$(item);
+					if($item.hasClass("node-selected")) {
+						clearContent();
+						console.log('getDta:' + nodeId)
+						getData(nodeId);
+					}
+				})
+				//console.log(nodeId);
+				//$('#tree').treeview('revealNode', [1, { silent: true } ]);
+				function getData(id) {
+					var imgData = [
+						{
+							id: 0,
+							imgUrls: ['index-all.png','list-all.png','detail-all.png']
+						},
+						{
+							id: 1,
+							imgUrls: ['0.png','1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png','11.png','12.png','13.png','14.png','15.png','16.png','17.png','18.png','19.png','20.png','21.png','22.png','23.png','24.png','25.png','26.png','27.png','28.png','29.png','30.png','31.png','32.png']
+						},
+						{
+							id: 2,
+							imgUrls: ['index.png','user.png','role.png']
+						},
+						{
+							id: 3,
+							imgUrls: ['index.png','user.png','role.png','menu.png','gailan.png']
+						}
+					];
+					$.each(imgData,function(i,item) {
+						if(item.id == id) {
+							var h='';
+							$.each(item.imgUrls, function(j,item_) {
+								var imgUrl = './img/p' + id + '/' + item_;
+								h += '<li data-imgUrl=' + imgUrl + '>' +
+										'<a href="javascript:void(0);" >' +
+											/*'<div class="vimg" style="background-image: url(' + imgUrl + ')"></div>' +*/
+											'<img src="' + imgUrl + '">' +
+										'</a>' +
+											/*'<p>上线时间：' + item.start_time + '</p>' +*/
+									'</li>';
+							})
+							$(".versions").html(h);
+							
+						}
+					})
+					if(nodeId == 2 || nodeId == 3) {
+						$('.versions li').css({
+							'width': '30%',
+							'box-sizing': 'border-box',
+							
+						})
+					}
+					if(nodeId == 1) {
+						$('.versions li').css({
+							'height': '391px',
+						})
+					}
+					if(nodeId == 0) {
+						$('.versions li').css({
+							'margin-right': '50px'
+						})
+					}
+				};
+				$('.versions').on('click', 'li', function() {
+					var imgUrl = $(this).attr('data-imgUrl');
+					console.log(imgUrl)
+					dialog(imgUrl)
+				});
+				
+				
+				
+				function clearContent() {
+					$(".versions").empty();
+				}
+				
+				function dialog(imgUrl) {
+					var h = '<div class="dialog" >' +
+								'<div class="dialog-content">' +
+									'<img src="' + imgUrl + '">' +
+								'</div>' +
+							'</div>';
+					$("#wrap").append(h);
+					$(".dialog").click(function() {
+						$(".dialog").remove();
+					})
+				}
+				
+			})
+			
+		</script>
+	</body>
+</html>
