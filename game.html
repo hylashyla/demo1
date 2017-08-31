@@ -267,7 +267,7 @@
 						},
 						{
 							id: 2,
-							imgUrls: ['index.png','user.png','role.png']
+							imgUrls: ['index.png','menu.png','role.png']
 						},
 						{
 							id: 3,
@@ -278,7 +278,7 @@
 						if(item.id == id) {
 							var h='';
 							$.each(item.imgUrls, function(j,item_) {
-								var imgUrl = './img/p' + id + '/' + item_;
+								var imgUrl = './img/p' + id + '/' + item_.replace('.png','.jpg');
 								h += '<li data-imgUrl=' + imgUrl + '>' +
 										'<a href="javascript:void(0);" >' +
 											/*'<div class="vimg" style="background-image: url(' + imgUrl + ')"></div>' +*/
@@ -322,6 +322,7 @@
 				}
 				
 				function dialog(imgUrl) {
+					var imgUrl = imgUrl.replace(".jpg",".png");
 					var h = '<div class="dialog" >' +
 								'<div class="dialog-content">' +
 									'<img src="' + imgUrl + '">' +
